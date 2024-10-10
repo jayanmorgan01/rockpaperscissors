@@ -21,11 +21,11 @@ function getComputerChoice () {
 
 //console.log(getComputerChoice())
 
-function getHumanChoice () {
+function getHumanChoice(choice) {
 
-    let input = prompt("Please enter your choice: ");
+   // let input = prompt("Please enter your choice: ");
 
-    switch(input.toLowerCase()) {
+    switch(choice) {
         case "rock":
             return "rock";
             break;
@@ -50,42 +50,95 @@ function playRound (humanChoice, computerChoice){
 
     if (humanChoice === "rock" && computerChoice === "scissors"){
         humanScore++;
+        const results = document.querySelector("#results");
+        results.textContent = "You win! Rock smashes scissors!"
         console.log(humanChoice + " - " + computerChoice);
-        console.log("You win! Rock smashes scissors! Score: "+humanScore)
+        console.log("You win! Rock smashes scissors!")
     }
     else if (humanChoice === "rock" && computerChoice === "paper"){
         computerScore++;
+        const results = document.querySelector("#results");
+        results.textContent = "You lose! Paper covers rock!"
         console.log(humanChoice + " - " + computerChoice);
         console.log("You lose! Paper covers rock!")
     }
     else if (humanChoice === "paper" && computerChoice === "rock"){
         humanScore++;
+        const results = document.querySelector("#results");
+        results.textContent = "You win! Paper covers rock!"
         console.log(humanChoice + " - " + computerChoice);
-        console.log("You win! Paper covers rock! Score: "+humanScore)
+        console.log("You win! Paper covers rock!")
     }
     else if (humanChoice === "paper" && computerChoice === "scissors"){
         computerScore++;
+        const results = document.querySelector("#results");
+        results.textContent = "You lose! Scissors cuts paper!"
         console.log(humanChoice + " - " + computerChoice);
         console.log("You lose! Scissors cuts paper!")
     }
     else if (humanChoice === "scissors" && computerChoice === "paper"){
         humanScore++;
+        const results = document.querySelector("#results");
+        results.textContent = "You win! Scissors cuts paper!"
         console.log(humanChoice + " - " + computerChoice);
-        console.log("You win! Scissors cuts paper! Score: "+humanScore)
+        console.log("You win! Scissors cuts paper!")
     }
     else if (humanChoice === "scissors" && computerChoice === "rock"){
         computerScore++;
+        const results = document.querySelector("#results");
+        results.textContent = "You lose! Rock smashes scissors!"
         console.log(humanChoice + " - " + computerChoice);
         console.log("You lose! Rock smashes scissors!")
     }
     else if (humanChoice === computerChoice ){
+        const results = document.querySelector("#results");
+        results.textContent = "That's a tie!"
         console.log(humanChoice + " - " + computerChoice);
         console.log("That's a tie!")
     }
+
+        //Display score
+    const score = document.querySelector("#score");
+    score.textContent = "Score: "+humanScore;
+
+    if (humanScore === 5){
+    score.textContent = "You won the RPS Game!! wooHOO!!! Score: "+humanScore;
+    console.log("You won the RPS Game!! wooHOO!!!")
+    }
+    else if (computerScore === 5){
+    score.textContent = "You lost the RPS Game! booHOO :(  Score: "+humanScore;
+    console.log("You lost the RPS Game! booHOO :( ")
+    }
 }
 
-//playRound(getHumanChoice(), getComputerChoice());
+//TODO: diasable buttons after the 
 
+//Rock Button
+const btnRock = document.querySelector("#btn-rock");
+btnRock.addEventListener("click", () => {
+ console.log("Rock");
+ playRound(getHumanChoice("rock"), getComputerChoice());
+});
+
+//Paper Button
+const btnPaper = document.querySelector("#btn-paper");
+btnPaper.addEventListener("click", () => {
+  console.log("Paper");
+  playRound(getHumanChoice("paper"), getComputerChoice());
+});
+//Scissors Button
+const btnScissors = document.querySelector("#btn-scissors");
+btnScissors.addEventListener("click", () => {
+   console.log("Scissors");
+   playRound(getHumanChoice("scissors"), getComputerChoice());
+});
+
+
+
+
+
+/*
+-------- For now, remove the logic that plays exactly five rounds.
 
 function playGame(){
 
@@ -105,5 +158,6 @@ function playGame(){
         console.log("You lost the RPS Game! booHOO :( ")
     }
 }
+    */
 
-playGame();
+//playGame();
